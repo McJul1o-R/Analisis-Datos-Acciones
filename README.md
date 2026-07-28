@@ -29,7 +29,9 @@ instalar una libreria
 install.packages("quantmod")
 ```
 
-Después de instalar la libreria la tenemos que utiliza
+Después de instalar la libreria la tenemos que utilizar
+
+
 
 
 
