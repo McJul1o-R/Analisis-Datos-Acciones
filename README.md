@@ -20,6 +20,19 @@ de datos financieros utilizando R.
 - `reports/`
 - `figures/`
 
+## API de Yahoo Finances
+
+Para que la API se conecte a Rstudio es imporante
+instalar una libreria
+
+```{r}
+install.packages("quantmod")
+```
+
+Después de instalar la libreria la tenemos que utiliza
+
+
+
 ## Autor
 
 Julio César Magaña Cáceres
