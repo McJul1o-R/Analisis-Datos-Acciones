@@ -31,6 +31,13 @@ install.packages("quantmod")
 
 Después de instalar la libreria la tenemos que utilizar
 
+```{r}
+library(quantmod)
+```
+Posteriormente, para que los datos se guarden en un vector,
+tenemos que realizar el proceso del siguiente ejemplo:
+
+![Precio de Microsoft](scripts/01_API_yahoo.R)
 
 
 
