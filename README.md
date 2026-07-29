@@ -56,9 +56,9 @@ La **media aritmética**, también conocido como promedio,
 es la suma de los datos dividido entre el **total de datos** $n$,
 esto es,
 
-\[
+$$
 \overline{x} = \frac{\sum x_i}{n} = \frac{x_1 + x_2 + \ldots + x_n}{n}
-\]
+$$
 
 La **varianza** es un complemento poderoso del promedio. Mide la variación de los datos
 respecto al promedio, aunque no maneja la misma unidad de medida que los datos. Para esto, 
