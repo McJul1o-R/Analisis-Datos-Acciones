@@ -418,16 +418,45 @@ misma unidad de medida que los datos. Para esto, se utiliza la
   \text{Desviación estándar} = s = \sqrt{\text{varianza}}
 \]</span></p>
 <p>Por último, los cuartiles son medidas de posición que separan
-porcentajes de datos, por ejemplo, el <strong>primer cuartil</strong>
-<span class="math inline">\(Q_1\)</span> es un valor tal que el 25% de
-los datos son menores a <span class="math inline">\(Q_1\)</span>. El
-otro 75% de los datos son mayores a <span class="math inline">\(Q_1\)</span>. El <strong>segundo cuartil</strong>
-<span class="math inline">\(Q_2\)</span>, también conocido como
-<strong>mediana</strong> divide a los datos por un 50%. El
-<strong>tercer cuartil</strong> <span class="math inline">\(Q_3\)</span>
-es lo contrario al primer cuartil, esto es, el 75% de los datos son
-menores a <span class="math inline">\(Q_3\)</span> y el 25% de los datos
-son menores a <span class="math inline">\(Q_3\)</span>.</p>
+porcentajes de datos, por ejemplo:</p>
+<ul>
+<li>El <strong>primer cuartil</strong> <span class="math inline">\(Q_1\)</span> es un valor tal que el 25% de los
+datos son menores a <span class="math inline">\(Q_1\)</span>. El otro
+75% de los datos son mayores a <span class="math inline">\(Q_1\)</span>.</li>
+<li>El <strong>segundo cuartil</strong> <span class="math inline">\(Q_2\)</span>, también conocido como
+<strong>mediana</strong> divide a los datos por un 50%.</li>
+<li>El <strong>tercer cuartil</strong> <span class="math inline">\(Q_3\)</span> es lo contrario al primer cuartil,
+esto es, el 75% de los datos son menores a <span class="math inline">\(Q_3\)</span> y el 25% de los datos son menores a
+<span class="math inline">\(Q_3\)</span>.</li>
+</ul>
+<p>Para realizar los cálculo, se utiliza la fórmula de percentiles.</p>
+<p>Para <span class="math inline">\(m\)</span> un porcentaje <span class="math inline">\(0 \leq m \leq 100\)</span>, la posición se calcula
+como</p>
+<p><span class="math display">\[
+i = \frac{m \cdot n}{100},
+\]</span></p>
+<p>donde <span class="math inline">\(n\)</span> sigue representando el
+tamaño de nuestra muestra o el total de datos que analizamos.</p>
+<p>El percentil <span class="math inline">\(m\)</span>, denotado por
+<span class="math inline">\(P_m\)</span>, se caclula como sigue:</p>
+<p><span class="math display">\[
+P_m = \left\{
+      \begin{array}{rl}
+      x_{\lceil i \rceil} &amp; \text{Cuando $i$ NO es entero}, \\
+      &amp; \\
+      \frac{x_i + x_{i+1}}{2} &amp; \text{Cuando $i$ es entero,}
+      \end{array}
+      \right.
+\]</span></p>
+<p>Recordemos que <span class="math inline">\(\lceil \cdot
+\rceil\)</span> es la función techo, esto es, cuando <span class="math inline">\(i\)</span> NO es entero, se redondea hacia arriba
+y esa es la posición utilizada.</p>
+<p>En particular,</p>
+<ul>
+<li><span class="math inline">\(Q_1 = P_{25}\)</span></li>
+<li><span class="math inline">\(Q_2 = P_{50}\)</span></li>
+<li><span class="math inline">\(Q_3 = P_{75}\)</span></li>
+</ul>
 </div>
 <div id="autor" class="section level2">
 <h2>Autor</h2>
