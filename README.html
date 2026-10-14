@@ -352,18 +352,18 @@ display: none;
 </div>
 
 
-<div id="análisis-de-datos-de-acciones-con-r" class="section level1">
-<h1>Análisis de Datos de Acciones con R</h1>
+<div id="análisis-de-datos-de-acciones" class="section level1">
+<h1>Análisis de Datos de Acciones</h1>
 <div id="descripción" class="section level2">
 <h2>Descripción</h2>
-<p>Este repositorio contiene ejemplos de análisis de datos financieros
-utilizando R.</p>
+<p>Este proyecto revisaremos algunas herramientas para el análisis de
+datos financieros de acciones.</p>
 </div>
 <div id="objetivos" class="section level2">
 <h2>Objetivos</h2>
 <ul>
 <li>Uso de la API de Yahoo Finances.</li>
-<li>Aprender análisis financiero.</li>
+<li>Aprender análisis técnico.</li>
 <li>Aplicar técnicas estadísticas.</li>
 <li>Generar reportes reproducibles.</li>
 <li>Crear portafolios optimizados.</li>
@@ -382,15 +382,12 @@ utilizando R.</p>
 <h2>API de Yahoo Finances</h2>
 <p>Para que la API se conecte a Rstudio es imporante instalar una
 libreria</p>
-<p><code>{r} install.packages(&quot;quantmod&quot;)</code></p>
+<pre class="r"><code>install.packages(&quot;quantmod&quot;)</code></pre>
 <p>Después de instalar la libreria la tenemos que utilizar</p>
-<p><code>{r} library(quantmod)</code> Posteriormente, para que los datos
-se guarden en un vector, tenemos que realizar el proceso del siguiente
-ejemplo:</p>
-<div class="float">
-<img role="img" aria-label="Precio de Microsoft" src="data:application/octet-stream;base64,bGlicmFyeShxdWFudG1vZCkNCk1TRlQgPSBnZXRTeW1ib2xzKCJNU0ZUIiwgDQogICAgICAgICAgICAgICAgICBmcm9tID0gIjIwMjQtMDEtMDEiLCANCiAgICAgICAgICAgICAgICAgIHRvID0gIjIwMjYtMDctMjciLCANCiAgICAgICAgICAgICAgICAgIHNyYyA9ICJ5YWhvbyIsIA0KICAgICAgICAgICAgICAgICAgYXV0by5hc3NpZ24gPSBGKVssNl0NCk1TRlQgPSBhcy52ZWN0b3IoTVNGVCRNU0ZULkFkanVzdGVkKQ0K" alt="Precio de Microsoft" />
-<div class="figcaption">Precio de Microsoft</div>
-</div>
+<pre class="r"><code>library(quantmod)</code></pre>
+<p>Posteriormente, para que los datos se guarden en un vector, tenemos
+que realizar el proceso del siguiente ejemplo:</p>
+<p><a href="scripts/01_API_yahoo.R">Precio de Microsoft</a></p>
 </div>
 <div id="estadísticos-descriptivos" class="section level2">
 <h2>Estadísticos descriptivos</h2>
@@ -403,21 +400,20 @@ de caja.</p>
 <p>Recordemos las fórmulas que usa R para realizar los cálculos.</p>
 <p>La <strong>media aritmética</strong>, también conocido como promedio,
 es la suma de los datos dividido entre el <strong>total de
-datos</strong> <span class="math inline">\(n\)</span>, esto es,</p>
-<p><span class="math display">\[
-\overline{x} = \frac{\sum x_i}{n} = \frac{x_1 + x_2 + \ldots + x_n}{n}
-\]</span></p>
-<p>La <strong>varianza</strong> es un complemento poderoso del promedio.
-Mide la variación de los datos respecto al promedio, aunque no maneja la
-misma unidad de medida que los datos. Para esto, se utiliza la
-<strong>desviación estándar</strong>. Las fórmulas son</p>
-<p><span class="math display">\[
-  \text{varianza} = s^2 = \frac{\sum (x_i - \overline{x})^2}{n-1}
-\]</span></p>
-<p><span class="math display">\[
-  \text{Desviación estándar} = s = \sqrt{\text{varianza}}
-\]</span></p>
-<p>Por último, los cuartiles son medidas de posición que separan
+datos</strong> <span class="math inline">\(n\)</span>.</p>
+<p>La <strong>varianza</strong> es un complemento importante del
+promedio. Mide la variación de los datos respecto al promedio, aunque no
+maneja la misma unidad de medida que los datos. Para esto, se utiliza la
+<strong>desviación estándar</strong>.</p>
+<p>En R, si tenemos una base datos, que llamaremos
+<strong>datos</strong>, obtenemos</p>
+<p>la media con</p>
+<pre class="r"><code>mean(datos)</code></pre>
+<p>la varianza,</p>
+<pre class="r"><code>var(datos)</code></pre>
+<p>Y la desviación estándar como</p>
+<pre class="r"><code>sd(datos)</code></pre>
+<p>Por otro lado, los cuartiles son medidas de posición que separan
 porcentajes de datos, por ejemplo:</p>
 <ul>
 <li>El <strong>primer cuartil</strong> <span class="math inline">\(Q_1\)</span> es un valor tal que el 25% de los
@@ -430,37 +426,30 @@ esto es, el 75% de los datos son menores a <span class="math inline">\(Q_3\)</sp
 <span class="math inline">\(Q_3\)</span>.</li>
 </ul>
 <p>Para realizar los cálculo, se utiliza la fórmula de percentiles.</p>
-<p>Para <span class="math inline">\(m\)</span> un porcentaje <span class="math inline">\(0 \leq m \leq 100\)</span>, la posición se calcula
-como</p>
-<p><span class="math display">\[
-i = \frac{m \cdot n}{100},
-\]</span></p>
-<p>donde <span class="math inline">\(n\)</span> sigue representando el
-tamaño de nuestra muestra o el total de datos que analizamos.</p>
-<p>El percentil <span class="math inline">\(m\)</span>, denotado por
-<span class="math inline">\(P_m\)</span>, se caclula como sigue:</p>
-<p><span class="math display">\[
-P_m = \left\{
-      \begin{array}{rl}
-      x_{\lceil i \rceil} &amp; \text{Cuando $i$ NO es entero}, \\
-      &amp; \\
-      \frac{x_i + x_{i+1}}{2} &amp; \text{Cuando $i$ es entero,}
-      \end{array}
-      \right.
-\]</span></p>
-<p>Recordemos que <span class="math inline">\(\lceil \cdot
-\rceil\)</span> es la función techo, esto es, cuando <span class="math inline">\(i\)</span> NO es entero, se redondea hacia arriba
-y esa es la posición utilizada.</p>
+<pre class="r"><code>quantile(datos, probs = m/100, type = 2)</code></pre>
+<p>donde <span class="math inline">\(m\)</span> representa el porcentaje
+del percentil que queremos calcular.</p>
+<p>Por ejemplo, si queremos dividir a los datos en 17% por debajo y 83%
+por arriba, entonces estamos calculando <span class="math inline">\(P_{17}\)</span> con <span class="math inline">\(m
+= 17\)</span>.</p>
 <p>En particular,</p>
 <ul>
 <li><span class="math inline">\(Q_1 = P_{25}\)</span></li>
 <li><span class="math inline">\(Q_2 = P_{50}\)</span></li>
 <li><span class="math inline">\(Q_3 = P_{75}\)</span></li>
 </ul>
+<p>Un ejemplo donde podemos utilizar estas herramientas, es en las
+acciones.</p>
+<p><a href="https://v658m0-julio-maga0a.shinyapps.io/analisisacciones/">Análisis
+de acciones</a></p>
+<p>Otro ejemplo es el análisis de calificaciones en una salón de
+clases.</p>
+<p><a href="https://v658m0-julio-maga0a.shinyapps.io/calificaciones/">Calificaciones
+de estudiantes</a></p>
 </div>
 <div id="autor" class="section level2">
 <h2>Autor</h2>
-<p>Julio César Magaña Cáceres</p>
+<p>Julio César Magaña Cáceres, Ph.D.</p>
 </div>
 </div>
 

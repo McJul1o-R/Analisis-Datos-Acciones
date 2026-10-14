@@ -1,14 +1,14 @@
-# Análisis de Datos de Acciones con R
+# Análisis de Datos de Acciones
 
 ## Descripción
 
-Este repositorio contiene ejemplos de análisis 
-de datos financieros utilizando R.
+Este proyecto revisaremos algunas herramientas para el análisis 
+de datos financieros de acciones.
 
 ## Objetivos
 
 - Uso de la API de Yahoo Finances.
-- Aprender análisis financiero.
+- Aprender análisis técnico.
 - Aplicar técnicas estadísticas.
 - Generar reportes reproducibles.
 - Crear portafolios optimizados.
@@ -25,19 +25,19 @@ de datos financieros utilizando R.
 Para que la API se conecte a Rstudio es imporante
 instalar una libreria
 
-```{r}
+```r
 install.packages("quantmod")
 ```
 
 Después de instalar la libreria la tenemos que utilizar
 
-```{r}
+```r
 library(quantmod)
 ```
 Posteriormente, para que los datos se guarden en un vector,
 tenemos que realizar el proceso del siguiente ejemplo:
 
-![Precio de Microsoft](scripts/01_API_yahoo.R)
+[Precio de Microsoft](scripts/01_API_yahoo.R)
 
 ## Estadísticos descriptivos
 
@@ -53,26 +53,33 @@ Recordemos las fórmulas que usa R para realizar los
 cálculos.
 
 La **media aritmética**, también conocido como promedio,
-es la suma de los datos dividido entre el **total de datos** $n$,
-esto es,
+es la suma de los datos dividido entre el **total de datos** $n$.
 
-$$
-\overline{x} = \frac{\sum x_i}{n} = \frac{x_1 + x_2 + \ldots + x_n}{n}
-$$
-
-La **varianza** es un complemento poderoso del promedio. Mide la variación de los datos
+La **varianza** es un complemento importante del promedio. Mide la variación de los datos
 respecto al promedio, aunque no maneja la misma unidad de medida que los datos. Para esto, 
-se utiliza la **desviación estándar**. Las fórmulas son
+se utiliza la **desviación estándar**.
 
-$$
-  \text{varianza} = s^2 = \frac{\sum (x_i - \overline{x})^2}{n-1}
-$$
+En R, si tenemos una base datos, que llamaremos **datos**, obtenemos 
 
-$$
-  \text{Desviación estándar} = s = \sqrt{\text{varianza}}
-$$
+la media con
 
-Por último, los cuartiles son medidas de posición que separan porcentajes 
+```r
+mean(datos)
+```
+
+la varianza,
+
+```r
+var(datos)
+```
+
+Y la desviación estándar como
+
+```r
+sd(datos)
+```
+
+Por otro lado, los cuartiles son medidas de posición que separan porcentajes 
 de datos, por ejemplo:
 
  - El **primer cuartil** $Q_1$ es un valor tal que el 25% de los 
@@ -84,29 +91,14 @@ de los datos son menores a $Q_3$ y el 25% de los datos son menores a $Q_3$.
 
 Para realizar los cálculo, se utiliza la fórmula de percentiles.
 
-Para $m$ un porcentaje $0 \leq m \leq 100$, la posición se calcula como
+```r
+quantile(datos, probs = m/100, type = 2)
+```
 
-$$
- i = \frac{m \cdot n}{100},
-$$
+donde $m$ representa el porcentaje del percentil que queremos calcular.
 
-donde $n$ sigue representando el tamaño de nuestra muestra o el total de datos que 
-analizamos.
-
-El percentil $m$, denotado por $P_m$, se caclula como sigue:
-
-$$
-P_m = \left\{ 
-      \begin{array}{rl}
-      x_{\lceil i \rceil} & \text{Cuando $i$ NO es entero}, \\
-      & \\
-      \frac{x_i + x_{i+1}}{2} & \text{Cuando $i$ es entero,} 
-      \end{array}
-      \right.
-$$
-
-Recordemos que $\lceil \cdot \rceil$ es la función techo, esto es, cuando
-$i$ NO es entero, se redondea hacia arriba y esa es la posición utilizada.
+Por ejemplo, si queremos dividir a los datos en 17% por debajo y 83% por arriba,
+entonces estamos calculando $P_{17}$ con $m = 17$.
 
 En particular, 
 
@@ -114,8 +106,15 @@ En particular,
  - $Q_2 = P_{50}$
  - $Q_3 = P_{75}$
 
+Un ejemplo donde podemos utilizar estas herramientas, 
+es en las acciones. 
 
+[Análisis de acciones](https://v658m0-julio-maga0a.shinyapps.io/analisisacciones/)
+
+Otro ejemplo es el análisis de calificaciones en una salón de clases.
+
+[Calificaciones de estudiantes]( https://v658m0-julio-maga0a.shinyapps.io/calificaciones/)
 
 ## Autor
 
-Julio César Magaña Cáceres
+Julio César Magaña Cáceres, Ph.D.
